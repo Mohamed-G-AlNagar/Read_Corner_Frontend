@@ -13,8 +13,8 @@ export async function makeOrder(cartId) {
     const { data: response, error } = await axios
         .post(`${baseURL}/order/create/${cartId}`,null, config)
         .catch((err) => {
-            console.error(err.response.data.error);
-            toast.error(err.response.data.error);
+            console.error(err);
+            toast.error(err.response.data.message);
         });
 
     console.log(response);
@@ -108,8 +108,8 @@ export async function getAllOrders(){
     const { data: response, error } = await axios
     .get(`${baseURL}/order/`,config)
     .catch((err) => {
-      console.error(err.message);
-      toast.error(err.message);
+      console.error(err);
+      toast.error(err.response.data.message);
       throw Error(err);
     });
     
@@ -140,9 +140,9 @@ export async function getMyOrders(){
     const { data: response, error } = await axios
     .get(`${baseURL}/order/user/${user.id}`, config)
     .catch((err) => {
-      console.error(err.message);
-      toast.error(err.message);
-      throw Error(err);
+      console.error(err);
+      toast.error(err.response.data.message);
+      // throw Error(err);
     });
     
     console.log(response.content);

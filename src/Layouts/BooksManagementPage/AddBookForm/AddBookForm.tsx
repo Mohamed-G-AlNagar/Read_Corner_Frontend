@@ -144,7 +144,7 @@ const AddBookForm: React.FC = () => {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary mt-2 w-25">Add Book</button>
+        <button type="submit" className="btn btn-primary mt-1 mb-1 w-25">Add Book</button>
       </form>
     </div>
   );

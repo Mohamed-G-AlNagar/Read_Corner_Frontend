@@ -34,7 +34,6 @@ export default function ProtectedRoutes(props) {
       navigate('/login');
     }
   } else {
-    // console.log('No Token Found, Please Login');
     toast.error('No Token Found, Please Login-------');
     navigate('/login');
   }

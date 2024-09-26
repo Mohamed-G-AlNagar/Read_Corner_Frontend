@@ -75,3 +75,11 @@
     margin-right: 0;
   }
 }
+
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.2); /* Light transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.3);  /* Light border to enhance the glass look */
+  border-radius: 10px;                         /* Optional: rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);    /* Optional: subtle shadow for depth */
+}

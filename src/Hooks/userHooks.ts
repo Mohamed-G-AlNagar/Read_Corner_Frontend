@@ -1,8 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
-import { userLogin, userSignup } from '../services/userAPI';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { updateMyAccount, userLogin, userSignup } from '../services/userAPI';
 import { ILoginUserData } from '../models/loginUserData';
 import { ISignupUserData } from '../models/signupUserData';
-import { useCart } from './cartHooks';
+import { IUser } from '../models/IUser';
+import toast from 'react-hot-toast';
 
 export function useUserLogin(userData: ILoginUserData) {
   // prettier-ignore
@@ -20,4 +21,20 @@ export function useUserSignup(userData: ISignupUserData) {
     queryFn: () => userSignup(userData)
   });
   console.log(data, 'userData from custom hook');
+}
+
+export function useUpdateMyAccount() {
+  //? to use it to invalidate the quire to update the data after insterting in the DB
+
+  const { mutate } = useMutation({
+    mutationFn: (userData: IUser) => updateMyAccount(userData),
+    onSuccess: () => {
+    },
+
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
+  return { mutate };
 }

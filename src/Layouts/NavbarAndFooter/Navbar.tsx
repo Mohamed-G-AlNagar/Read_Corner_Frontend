@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import toast from "react-hot-toast";
-import { FaCartPlus, FaSearch, FaUserShield } from 'react-icons/fa';
+import { FaCartPlus, FaSearch, FaUser, FaUserShield } from 'react-icons/fa';
 import { Link, useNavigate } from "react-router-dom";
 import { tokenContext } from "../../context/TokenContext";
 import { useSearchProducts } from "../../Hooks/filteredProductsHooks";
@@ -150,6 +150,13 @@ export const Navbar = () => {
             <Link className="nav-link fs-5 text-light" to={'booksManagement'}>
               <FaUserShield className="me-2 fs-3" /> 
               Admin Panel
+            </Link>
+          )}
+
+          {isLoggedIn && !isAdmin && (
+            <Link className="nav-link fs-5 text-light" to={'booksManagement'}>
+              <FaUser className="me-2 fs-3" /> 
+              User Panel
             </Link>
           )}
 

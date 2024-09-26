@@ -64,12 +64,30 @@ export async function getUserData() {
   }
 }
 
-// export async function verifyMail(verifyToken) {
-//   const {data, error  } = await axios.get(
-//     `${baseURL}/auth/activate-account?token=${verifyToken}`
-//   );
-// console.log(data,"data");
-// console.log(error,"error");
-//   if (error) return error;
-//   return data;
-// }
+export async function updateMyAccount(userData) {
+  const token = localStorage.getItem('token') || '';
+
+  const config = {
+      headers: {
+          Authorization: `Bearer ${token}`,
+      },
+  };
+
+  const { data } = await axios
+    .patch(`${baseURL}/user/update_me`, userData,config)
+    .catch((err) => {
+      console.log(err.response.data);
+      if(err.response.data?.validationErrors?.length > 0){
+        err.response.data.validationErrors.forEach(ValidErr => {
+          toast.error(ValidErr)
+        });
+      }else{
+        toast.error(err.response.data?.error);
+      }
+      return err.response.data;
+    });
+  if (data?.status === 'SUCCESS') {
+    toast.success(data.message);
+  }
+  return data.content;
+}

@@ -13,7 +13,7 @@ import Cart from './Layouts/cart/Cart';
 import {PaymentSuccess} from './Layouts/Payment/PaymentSuccess';
 import { PaymentCanceled } from './Layouts/Payment/PaymentCanceled';
 import FilterProductsPage from './Layouts/filter/FilterProductsPage';
-import BookManagementPage from './Layouts/BooksManagementPage/BooksManagmentPage';
+import UserAndAdminPanel from './Layouts/BooksManagementPage/UserAndAdminPanel';
 
 type RouteObject = {
   path: string;
@@ -25,7 +25,7 @@ const routes: RouteObject[] = [
   {path: "",element: <MainLayout />,children: [
       { path: "", element: <HomePage /> },
       { path: "/cart", element: <ProtectedRoutes> <Cart /></ProtectedRoutes> },
-      { path: "/booksManagement", element: <ProtectedRoutes> <BookManagementPage /></ProtectedRoutes> },
+      { path: "/booksManagement", element: <ProtectedRoutes> <UserAndAdminPanel /></ProtectedRoutes> },
       { path: "/book/:id", element: <BookDetailsAndFeedbacks /> },
       { path: "/booksFilter", element: <FilterProductsPage /> },
       { path: "*", element: <NotFound /> },
