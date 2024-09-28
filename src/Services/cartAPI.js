@@ -7,7 +7,6 @@ export function createCartForNewUser() { }
 export async function getCartById() {
   const token = localStorage.getItem('token') || '';
   if (!token) {
-    toast.error('pleasse login First');
     return;
   }
 
@@ -46,7 +45,7 @@ export async function addItemToCart(bookId) {
   const token = localStorage.getItem('token') || '';
   console.log(token);
   if (!token) {
-    toast.error('pleasse login First');
+    toast.error('please login First');
     return;
   }
 
@@ -93,7 +92,7 @@ export async function deleteItemFromCart(bookId, quantity = 1) {
   //? protected route
   const token = localStorage.getItem('token') || '';
   if (!token) {
-    toast.error('pleasse login First');
+    toast.error('please login First');
     return;
   }
 
@@ -127,14 +126,11 @@ export async function deleteItemFromCart(bookId, quantity = 1) {
       config
     );
     toast.success(data.message);
-    // toast.success('Product Successfully deleted from Cart');
     console.log(data);
     return data;
   } catch (error) {
     console.log(error.response.data.error||error.response.data.message);
     toast.error(error.response.data.message || error.response.data.error);
-    // toast.error('addItem Error');
-
-    // throw Error(error.response.data.ErrMessage);
+   
   }
 }

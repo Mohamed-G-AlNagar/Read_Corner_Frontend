@@ -2,7 +2,6 @@ import './cart.css';
 import {CartItem} from './CartItem/CartItem';
 import { CartItem as CartItemProps } from '../../models/ICart';
 import { Link } from 'react-router-dom';
-// import { useState } from 'react';
 import Spinner from '../../Components/spinner/Spinner';
 import { makeOrder } from '../../Services/orderAPI';
 import { useState } from 'react';
@@ -13,10 +12,8 @@ function Cart() {
   const { data: cartData, isLoading, error } = useCart();
   if (isLoading) return <Spinner />;
   if (error) {
-    // toast.error(error.message);
     return <h1>Error</h1>;
   }
-  console.log(cartData, 'cartData');
 
   const {
     cartItems,
@@ -24,8 +21,6 @@ function Cart() {
     user,
     cartId
   } = cartData;
-
-  console.log(cartData,"-------------------------")
 
   const {fullName : createdBy} = user
 

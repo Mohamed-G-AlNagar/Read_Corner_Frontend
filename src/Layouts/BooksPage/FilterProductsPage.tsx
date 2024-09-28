@@ -1,7 +1,7 @@
 
 import  { useState } from "react";
-import Filter from "./Filter";
-import Cards from "../BooksPage/cards/Cards";
+import Filter from "./filter/Filter";
+import Cards from "./cards/Cards";
 import { useFilteredCategProducts } from "../../Hooks/filteredProductsHooks";
 import Spinner from "../../Components/spinner/Spinner";
 import toast from "react-hot-toast";

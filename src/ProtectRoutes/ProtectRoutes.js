@@ -14,7 +14,6 @@ export default function ProtectedRoutes(props) {
     try {
       const decoded = jwtDecode(token);
       const isTokenNotExpired = decoded.exp > Date.now() / 1000;
-      console.log(decoded,"token decoded :--------" );
 
       if (decoded.sub && isTokenNotExpired) {
         // setToken(token);

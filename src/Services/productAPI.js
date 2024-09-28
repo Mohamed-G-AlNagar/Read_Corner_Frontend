@@ -7,6 +7,7 @@ export async function getAllProducts() {
     .get(`${baseURL}/book/`)
     .catch((err) => {
       console.error(err.message);
+      // if(err.message == "Network Error")
       toast.error(err.message);
       throw Error(err);
     });

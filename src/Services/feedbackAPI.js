@@ -55,7 +55,6 @@ export async function addfeedbackToBook(comment,rate,bookId) {
 
 
 export async function deletefeedback(feedbackId,bookId) {
-console.log(feedbackId,bookId,"---------------------------------")
     const token = localStorage.getItem('token') || '';
     if (!token) {
       toast.error('pleasse login First');

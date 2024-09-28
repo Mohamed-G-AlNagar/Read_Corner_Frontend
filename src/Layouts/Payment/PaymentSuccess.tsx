@@ -15,7 +15,6 @@ export const PaymentSuccess: React.FC = () => {
 
         if(!isProcessed) {
             setIsProcessed(true);
-    //         hasFetched.current = true;
             paySuccess({orderId, sessionId});
             setTimeout(() => {
                 window.location.href = '/';

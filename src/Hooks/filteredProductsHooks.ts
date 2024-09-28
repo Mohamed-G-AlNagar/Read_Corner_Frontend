@@ -4,7 +4,6 @@ import { useProducts } from './productHooks';
 
 export function useFilteredCategProducts(filteredCategory: string = 'All') {
   const { products: allProducts } = useProducts();
-  // const [filteredCategory, setFilteredCategory] = useState<string>('All');
 
   const {
     data: fiteredProducts,

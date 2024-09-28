@@ -20,7 +20,6 @@ export function VerifyEmail() {
         navigate('/login');
       }, 2000);
     } catch (error) {
-    //   toast.error(error?.response?.data?.message);
     console.error(error);
       navigate('/signup');
     }

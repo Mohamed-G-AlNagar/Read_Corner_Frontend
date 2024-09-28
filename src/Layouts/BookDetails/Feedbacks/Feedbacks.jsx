@@ -7,11 +7,11 @@ export const Feedbacks = ({ feedbacks, setShowFeedbackModal }) => {
 
    const feedbacksSorted = feedbacks.sort((a,b)=> b.id - a.id);
 
-   const userString = localStorage.getItem('user') ;
-  let isAdmin = false;
-  if (userString) {
-    isAdmin = JSON.parse(userString).role === "ADMIN";
-  }
+   const token = localStorage.getItem('token') ;
+   let isLoggedin = false;
+   if (token) {
+     isLoggedin = true;
+   }
 
   return (
     <section id="feedbacks" className="my-2">
@@ -23,7 +23,7 @@ export const Feedbacks = ({ feedbacks, setShowFeedbackModal }) => {
 
                <div className='d-flex justify-content-center align-items-center '>
                     <h2 className='col-10 '>All Feedbacks</h2>
-                    {isAdmin && <Link
+                    {isLoggedin && <Link
                             className=" fs-7 mt-2"
                             onClick={() => setShowFeedbackModal(true)}
                             >

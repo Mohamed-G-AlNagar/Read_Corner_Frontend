@@ -142,7 +142,6 @@ export async function getMyOrders(){
     .catch((err) => {
       console.error(err);
       toast.error(err.response.data.message);
-      // throw Error(err);
     });
     
     console.log(response.content);

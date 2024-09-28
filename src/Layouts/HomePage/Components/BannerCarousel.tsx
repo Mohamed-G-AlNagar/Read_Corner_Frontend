@@ -6,8 +6,7 @@ import image3 from "../../../images/homebanner3.jpg"
 
 export const BannerCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [transitioning, setTransitioning] = useState(false); // New state to handle transitions
-
+  const [transitioning, setTransitioning] = useState(false); 
   const images = [
     image1,
     image2,
@@ -16,10 +15,10 @@ export const BannerCarousel = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTransitioning(true); // Start transition
+      setTransitioning(true); 
       setTimeout(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-        setTransitioning(false); // End transition
+        setTransitioning(false); 
       }, 2000); 
     }, 4000); 
 

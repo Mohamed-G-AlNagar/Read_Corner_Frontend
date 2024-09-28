@@ -15,8 +15,7 @@ export async function userLogin(userData) {
   if (data?.status === 'SUCCESS') {
     toast.success(data.message);
     localStorage.setItem('token', data.content.access_token);
-    // const cart = await getCartById();
-    // localStorage.setItem('cartId', cart._id);
+
   }
   return data;
 }
@@ -43,7 +42,7 @@ export async function userSignup(userData) {
   return data;
 }
 
-// get loogedin user data
+
 
 export async function getUserData() {
   const token = localStorage.getItem('token');
