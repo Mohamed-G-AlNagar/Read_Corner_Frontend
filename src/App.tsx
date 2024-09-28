@@ -12,7 +12,7 @@ import ProtectedRoutes from './ProtectRoutes/ProtectRoutes';
 import Cart from './Layouts/cart/Cart';
 import {PaymentSuccess} from './Layouts/Payment/PaymentSuccess';
 import { PaymentCanceled } from './Layouts/Payment/PaymentCanceled';
-import FilterProductsPage from './Layouts/filter/FilterProductsPage';
+import FilterProductsPage from './Layouts/BooksPage/FilterProductsPage';
 import UserAndAdminPanel from './Layouts/BooksManagementPage/UserAndAdminPanel';
 
 type RouteObject = {
