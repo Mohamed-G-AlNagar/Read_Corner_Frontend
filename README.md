@@ -10,11 +10,14 @@ This is the frontend application for the Read Corner Library, built with React.j
 - TypeScript 5.6.2
 - React Router 6.26.1
 - React Query 5.52.2
+- React Context API
+- React Hooks & Custom Hooks
 - Axios 1.7.5
 - React Hook Form 7.53.0
 - React Hot Toast 2.4.1
 - JWT Decode 4.0.0
 - FontAwesome 6.6.0
+- Bootstrap
 - Vite 5.3.4
 
 ## Features
