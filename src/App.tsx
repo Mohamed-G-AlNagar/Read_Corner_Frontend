@@ -25,7 +25,7 @@ const routes: RouteObject[] = [
   {path: "",element: <MainLayout />,children: [
       { path: "", element: <HomePage /> },
       { path: "/cart", element: <ProtectedRoutes> <Cart /></ProtectedRoutes> },
-      { path: "/booksManagement", element: <ProtectedRoutes> <UserAndAdminPanel /></ProtectedRoutes> },
+      { path: "/controlPanel", element: <ProtectedRoutes> <UserAndAdminPanel /></ProtectedRoutes> },
       { path: "/book/:id", element: <BookDetailsAndFeedbacks /> },
       { path: "/booksFilter", element: <FilterProductsPage /> },
       { path: "*", element: <NotFound /> },
