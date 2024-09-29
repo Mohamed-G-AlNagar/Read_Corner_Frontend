@@ -2,7 +2,6 @@ import React from 'react';
 import { FaBook, FaFileInvoice, FaList, FaUser } from 'react-icons/fa';
 import './Sidebar.css';
 import { IUser } from '../../../models/IUser';
-import { FaPerson } from 'react-icons/fa6';
 
 interface SidebarProps {
   activeTab: string;

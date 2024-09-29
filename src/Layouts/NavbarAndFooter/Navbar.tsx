@@ -147,14 +147,14 @@ export const Navbar = () => {
           </div>
 
           {isLoggedIn && isAdmin && (
-            <Link className="nav-link fs-5 text-light" to={'booksManagement'}>
+            <Link className="nav-link fs-5 text-light" to={'controlPanel'}>
               <FaUserShield className="me-2 fs-3" /> 
               Admin Panel
             </Link>
           )}
 
           {isLoggedIn && !isAdmin && (
-            <Link className="nav-link fs-5 text-light" to={'booksManagement'}>
+            <Link className="nav-link fs-5 text-light" to={'controlPanel'}>
               <FaUser className="me-2 fs-3" /> 
               User Panel
             </Link>

@@ -1,11 +1,32 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { BookFormData } from '../../../models/IBook';
-import { useAddBook } from '../../../Hooks/productHooks';
+import { useAddBook, useProductDatails, useUpdateBook } from '../../../Hooks/productHooks';
+import Spinner from '../../../Components/spinner/Spinner';
 
-const AddBookForm: React.FC = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<BookFormData>();
-  const { mutate: addBook } = useAddBook();
+interface AddBookFormProps {
+  updatedBookId : number | null;
+}
+
+const AddBookForm: React.FC<AddBookFormProps> = ( {updatedBookId} ) => {
+
+  const { product, isLoading} = useProductDatails(
+      updatedBookId ? updatedBookId.toString() : null,
+    ); 
+    
+    const { mutate: addBook } = useAddBook();
+    const { mutate: updateBook } = useUpdateBook();
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<BookFormData>({
+    defaultValues: product,
+  });
+
+  React.useEffect(() => {
+    if (product) {
+      reset(product);
+    }
+  }, [product, reset]);
+
 
   const onSubmit = (data: BookFormData) => {
     const formData = new FormData();
@@ -21,14 +42,20 @@ const AddBookForm: React.FC = () => {
       formData.append('bookCoverImage', data.bookCoverImage[0]);
     }
 
-    addBook(formData);
+    if (updatedBookId) {
+      updateBook({ bookId: updatedBookId, formData });
+    } else {
+      addBook(formData);
+    }
     reset();
     window.scrollTo(0, 0);
   };
 
+  if(isLoading) return <Spinner/>
+
   return (
     <div className="container col-12 mt-2">
-      <h2>Add New Book</h2>
+      <h2>{updatedBookId ? 'Update Book' : 'Add New Book'}</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-2">
         <div className="row mb-2">
           <label htmlFor="title" className="col-sm-2 col-form-label">Title</label>
@@ -144,7 +171,9 @@ const AddBookForm: React.FC = () => {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary mt-1 mb-1 w-25">Add Book</button>
+        <button type="submit" className="btn btn-primary mt-1 mb-1 w-25">
+        {updatedBookId ? 'Update Book' : 'Add Book'}
+          </button>
       </form>
     </div>
   );

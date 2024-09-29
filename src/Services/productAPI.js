@@ -61,7 +61,6 @@ export async function getAllProducts() {
     .delete(`${baseURL}/book/${id}`,config)
     .catch((err) => {
       console.error(err.message);
-      toast.error(err.message);
       throw Error(err);
     });
 
@@ -85,5 +84,23 @@ export async function addBook(formData) {
   };
 
   const { data } = await axios.post(`${baseURL}/book/`, formData, config);
+  return data;
+}
+
+
+export async function updateBook(id,formData) {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    throw new Error('Please login first');
+  }
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+  };
+
+  const { data } = await axios.put(`${baseURL}/book/${id}`, formData, config);
   return data;
 }

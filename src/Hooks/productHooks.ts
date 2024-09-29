@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { addBook, deleteBook, getAllProducts, getNewNineProducts, getProduct } from '../Services/productAPI';
+import { addBook, deleteBook, getAllProducts, getNewNineProducts, getProduct, updateBook } from '../Services/productAPI';
 import toast from 'react-hot-toast';
 import { BookFormData } from '../models/IBook';
 
@@ -29,7 +29,7 @@ export function useNewArrival() {
   return { products, error, isLoading };
 }
 
-export function useProductDatails(id: string) {
+export function useProductDatails(id: string | null) {
   const {
     data: product,
     isLoading,
@@ -56,9 +56,9 @@ export function useDeleteBook() {
       queryClient.invalidateQueries({ queryKey: ['products'] });
     },
 
-    onError: (error) => {
-      toast.error(error.message);
-      console.log(error);
+    onError: (error: any) => {
+      toast.error(error?.response?.data?.message || 'An error occurred while deleting the book');
+      console.log(error.response);
     },
   });
 
@@ -84,6 +84,36 @@ export function useAddBook() {
       } else {
         console.log(error.response.data)
         toast.error(error.response?.data?.error || 'An error occurred while adding the book');
+      }
+    },
+  });
+
+  return { mutate };
+}
+
+
+interface IupdateBook {
+  bookId: number,
+  formData: FormData
+}
+export function useUpdateBook() {
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: ({ bookId, formData }: IupdateBook) => updateBook(bookId, formData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['products'] });
+      toast.success('Book Successfully Added');
+    },
+    onError: (error: any) => {
+      console.error(error);
+      if (error.response?.data?.validationErrors) {
+        error.response.data.validationErrors.forEach((err: string) => {
+          toast.error(err);
+        });
+      } else {
+        console.log(error.response.data)
+        toast.error(error.response?.data?.error || 'An error occurred while updating the book');
       }
     },
   });

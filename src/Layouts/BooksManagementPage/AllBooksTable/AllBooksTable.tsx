@@ -3,6 +3,8 @@ import { useDeleteBook, useProducts } from '../../../Hooks/productHooks';
 import Spinner from '../../../Components/spinner/Spinner';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Book {
   id: number;
@@ -14,8 +16,14 @@ interface Book {
   bookCover?: string;
 }
 
-const AllBooksTable: React.FC = () => {
+interface AllBooksProps {
+  setActiveTab: (tab: string) => void;
+  setUpdatedBookId: (tab: number) => void;
+}
+
+const AllBooksTable: React.FC<AllBooksProps> = ({setActiveTab,setUpdatedBookId}) => {
   const { products: books, error, isLoading } = useProducts();
+
   const { mutate: deleteBook } = useDeleteBook();
   const navigate = useNavigate();
 
@@ -66,6 +74,12 @@ const AllBooksTable: React.FC = () => {
       deleteBook(deleteConfirmation.bookId);
       setDeleteConfirmation({ isOpen: false, bookId: null });
     }
+  };
+
+  const handleUpdateBook = (bookId:number,event: React.MouseEvent) => {
+    event.stopPropagation();
+    setUpdatedBookId(bookId);
+    setActiveTab("addBook");
   };
 
   const handleCancelDelete = () => {
@@ -184,10 +198,18 @@ const AllBooksTable: React.FC = () => {
                 <td className="align-middle">{book.stock}</td>
                 <td className="align-middle">
                   <button 
-                    className="btn btn-danger btn-sm" 
-                    onClick={(e) => handleDeleteClick(book.id, e)}
-                  >
-                    Delete
+                      className="btn fs-6 me-3" 
+                      onClick={(e) => handleDeleteClick(book.id, e)}
+                      style={{ background: 'none', border: 'none', padding: 0 }}
+                    >
+                    <FontAwesomeIcon icon={faTrash} style={{ color: 'red', fontSize: '1.2em' }} />
+                  </button>
+                  <button 
+                      className="btn fs-6" 
+                      onClick={(e) => handleUpdateBook(book.id, e)}
+                      style={{ background: 'none', border: 'none', padding: 0 }}
+                    >
+                      <FontAwesomeIcon icon={faPen} style={{ color: 'blue', fontSize: '1.2em' }} />
                   </button>
                 </td>
               </tr>
