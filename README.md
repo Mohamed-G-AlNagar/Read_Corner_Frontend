@@ -90,8 +90,8 @@ The application uses React Router for navigation. Main routes include:
 - `/booksFilter`: Book filtering page
 - `/order/success`: Successful payment page (protected)
 - `/order/cancel`: Cancelled payment page (protected)
-- `/forgot-password-request` : Forgot password - Send token code and link to email.
-- `/reset-password-confirm` : Reset password after confirm using token
+- `/forgotPassword` : Forgot password - Send token code and link to email.
+- `/resetPassword/:token` : Reset password after confirm using token
 - `/*` : Not Found page for undefined routes (NotFound component).
 
 ## State Management
