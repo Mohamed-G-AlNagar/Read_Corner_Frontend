@@ -26,6 +26,7 @@ This is the frontend application for the Read Corner Library, built with React.j
    - User login and signup with field validations.
    - Email verification
    - Protected routes for authenticated users
+   - Forgot password , reset password using token sent to email.
 
 2. **Book Browsing**
    - Homepage with featured books
@@ -89,6 +90,8 @@ The application uses React Router for navigation. Main routes include:
 - `/booksFilter`: Book filtering page
 - `/order/success`: Successful payment page (protected)
 - `/order/cancel`: Cancelled payment page (protected)
+- `/forgot-password-request` : Forgot password - Send token code and link to email.
+- `/reset-password-confirm` : Reset password after confirm using token
 - `/*` : Not Found page for undefined routes (NotFound component).
 
 ## State Management
