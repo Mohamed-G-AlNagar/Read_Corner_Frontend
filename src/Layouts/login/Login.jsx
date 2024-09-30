@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useUserLogin } from '../../Hooks/userHooks';
 import Spinner from '../../Components/spinner/Spinner';
 import { tokenContext } from '../../context/TokenContext';
-import { userLogin, getUserData } from '../../services/userAPI';
+import { userLogin, getUserData } from '../../Services/userAPI';
 import { UserContext } from '../../context/UserContext';
 
 function Login() {
@@ -117,13 +117,21 @@ function Login() {
             >
               Login
             </button>
-            <p className="small fw-bold mt-2 pt-1 mb-2">
-              Don't have an account?
-              <Link to="/signup" className="text-decoration-none text-danger">
-                {' '}
-                Register
-              </Link>
-            </p>
+            <div className='d-flex justify-content-between'>
+              <p className="small fw-bold mt-2 pt-1 mb-2">
+                Don't have an account?
+                <Link to="/signup" className="text-decoration-none text-danger">
+                  {' '}
+                  Register
+                </Link>
+              </p>
+              <p className="small fw-bold mt-2 pt-1 mb-2">
+                <Link to="/forgotPassword" className="text-decoration-none text-danger fs-6">
+                  {' '}
+                  Forgot Your Password?
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>

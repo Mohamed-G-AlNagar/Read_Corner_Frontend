@@ -90,3 +90,49 @@ export async function updateMyAccount(userData) {
   }
   return data.content;
 }
+
+
+export async function forgotPass(email) {
+
+  const { data } = await axios
+    .post(`${baseURL}/auth/forgot-password-request`,{email})
+    .catch((err) => {
+      console.log(err.response);
+      if(err.response.data?.validationErrors?.length > 0){
+        err.response.data.validationErrors.forEach(ValidErr => {
+          toast.error(ValidErr)
+        });
+      }else{
+        toast.error(err.response.data?.error);
+      }
+      return err.response.data;
+    });
+  if (data?.status === 'SUCCESS') {
+    console.log(data)
+    toast.success(data.message);
+    
+  }
+  return data;
+}
+
+export async function ResetPass(newPassword, code) {
+
+  const { data } = await axios
+    .post(`${baseURL}/auth/reset-password-confirm?token=${code}`,{newPassword})
+    .catch((err) => {
+      console.log(err.response);
+      if(err.response.data?.validationErrors?.length > 0){
+        err.response.data.validationErrors.forEach(ValidErr => {
+          toast.error(ValidErr)
+        });
+      }else{
+        toast.error(err.response.data?.error);
+      }
+      return err.response.data;
+    });
+  if (data?.status === 'SUCCESS') {
+    console.log(data)
+    toast.success(data.message);
+  }
+  return data;
+}

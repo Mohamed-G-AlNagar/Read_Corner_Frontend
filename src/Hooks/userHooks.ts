@@ -1,5 +1,5 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { updateMyAccount, userLogin, userSignup } from '../services/userAPI.js';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { forgotPass, ResetPass, updateMyAccount, userLogin, userSignup } from '../Services/userAPI.js';
 import { ILoginUser } from '../models/ILoginUser';
 import { ISignupUser } from '../models/ISignupUser.ts';
 import { IUser } from '../models/IUser';
@@ -36,3 +36,27 @@ export function useUpdateMyAccount() {
 
   return { mutate };
 }
+
+
+export function useForgotPassword() {
+  const { mutate, isPending, data } = useMutation({
+    mutationFn: (email: string) => forgotPass(email),
+
+  });
+
+  return { mutate, isPending, data };
+}
+
+interface IResetPass {
+  password: string,
+  code: string
+}
+export function useResetPassword() {
+  const { mutate, isPending, data } = useMutation({
+    mutationFn: ({ password, code }: IResetPass) => ResetPass(password, code),
+
+  });
+
+  return { mutate, isPending, data };
+}
+

@@ -14,6 +14,8 @@ import {PaymentSuccess} from './Layouts/Payment/PaymentSuccess';
 import { PaymentCanceled } from './Layouts/Payment/PaymentCanceled';
 import FilterProductsPage from './Layouts/BooksPage/FilterProductsPage';
 import UserAndAdminPanel from './Layouts/BooksManagementPage/UserAndAdminPanel';
+import ForgotPassword from './Layouts/ResetPassword/ForgotPassword';
+import ResetPassword from './Layouts/ResetPassword/UpdatePassword';
 
 type RouteObject = {
   path: string;
@@ -33,6 +35,8 @@ const routes: RouteObject[] = [
   },
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <Signup /> },
+  { path: "/forgotPassword", element: <ForgotPassword /> },
+  { path: "/resetPassword/:code", element: <ResetPassword /> },
   { path: "/verifyEmail/:token", element: <VerifyEmail /> },
   { path: "/order/success", element: <ProtectedRoutes><PaymentSuccess /></ProtectedRoutes> },
   { path: "/order/cancel", element: <ProtectedRoutes><PaymentCanceled /></ProtectedRoutes> },
